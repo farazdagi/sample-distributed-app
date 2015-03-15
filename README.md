@@ -2,6 +2,11 @@
 
 To start a simple cluster of 3 homogeneous nodes on DO, use:
 
+1. Create new discovery token and update `config/cloud-config.yaml` (you can obtain new token here: http://discovery.etcd.io/new)
+
+2. Start nodes
+
+
 ```
 $ env TOKEN=$TOKEN SSH_KEY_ID=$SSH_KEY_ID bin/create-droplet.sh core-1
 $ env TOKEN=$TOKEN SSH_KEY_ID=$SSH_KEY_ID bin/create-droplet.sh core-2
