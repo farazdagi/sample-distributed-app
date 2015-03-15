@@ -8,7 +8,7 @@ curl -X POST https://api.digitalocean.com/v2/droplets \
     -H "Authorization: Bearer $TOKEN" \
     -d '
 {
-    "name":"core1",
+    "name":"'$1'",
     "region":"ams3",
     "size":"512mb",
     "image":"coreos-stable",
