@@ -1,0 +1,18 @@
+[Unit]
+Description=MyDumbServer
+After=etcd.service
+After=docker.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill dumbserver
+ExecStartPre=-/usr/bin/docker rm dumbserver
+ExecStartPre=/usr/bin/docker pull farazdagi/dumbserver
+ExecStart=/usr/bin/docker run --name dumbserver -p 80:80 farazdagi/dumbserver
+
+ExecStartPost=/usr/bin/etcdctl set /domains/example.com/%H:%i running
+ExecStop=/usr/bin/docker stop dumbserver
+ExecStopPost=/usr/bin/etcdctl rm /domains/example.com/%H:%i
+
+[Install]
+WantedBy=multi-user.target
